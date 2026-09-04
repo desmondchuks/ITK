@@ -83,8 +83,17 @@ function toggleSidebar() {
     } else {
         hamburger.textContent = "☰";
     }
-} function toggleMobileNav() { document.querySelector(".navlinks").classList.toggle("mobile-open") }
-function renderView() { const v = document.getElementById("view"); if (state.view === "dashboard") v.innerHTML = dashboard(); if (state.view === "savings") v.innerHTML = savings(); if (state.view === "goals") v.innerHTML = goals(); if (state.view === "contributions") v.innerHTML = contributions(); if (state.view === "transactions") v.innerHTML = transactions(); if (state.view === "notifications") v.innerHTML = notifications(); if (state.view === "settings") v.innerHTML = settings() }
+}
+function toggleMobileNav() {
+    const navlinks = document.querySelector(".navlinks");
+    const menu = document.querySelector(".mobile-menu");
+
+    navlinks.classList.toggle("mobile-open");
+
+    menu.textContent = navlinks.classList.contains("mobile-open")
+        ? "✕"
+        : "☰";
+}function renderView() { const v = document.getElementById("view"); if (state.view === "dashboard") v.innerHTML = dashboard(); if (state.view === "savings") v.innerHTML = savings(); if (state.view === "goals") v.innerHTML = goals(); if (state.view === "contributions") v.innerHTML = contributions(); if (state.view === "transactions") v.innerHTML = transactions(); if (state.view === "notifications") v.innerHTML = notifications(); if (state.view === "settings") v.innerHTML = settings() }
 function dashboard() {
     return `<div class="content">
  <div class="welcome"><div><h1>Good morning, ${state.user.name} 👋</h1><p>Here's what's happening with your savings.</p></div><button class="btn btn-primary" onclick="openPlanModal()">＋ New Savings Plan</button></div>
